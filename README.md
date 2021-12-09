@@ -14,6 +14,19 @@ Extensions to logback for smoother integration with cloud environments. Currentl
 </dependency>
 ```
 
-1. Configure logback (see `/examples`). For spring-boot applications, `/examples/logback-spring.xml` is a copy-pastable configurations.
+2. Configure logback (see `/examples`). For spring-boot applications, `/examples/logback-spring.xml` is a copy-pastable configurations.
 
   * If you are using the above example configuration, enable the `gke-logging` Spring profile.
+  * If using the above configuration, additioanlly add logback.contrib dependencies:
+  ```
+  <dependency>
+      <groupId>ch.qos.logback.contrib</groupId>
+      <artifactId>logback-jackson</artifactId>
+      <version>0.1.5</version>
+  </dependency>
+  <dependency>
+      <groupId>ch.qos.logback.contrib</groupId>
+      <artifactId>logback-json-classic</artifactId>
+      <version>0.1.5</version>
+  </dependency>
+  ```
