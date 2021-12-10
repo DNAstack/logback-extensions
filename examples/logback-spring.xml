@@ -1,24 +1,24 @@
 <configuration>
-<springProfile name="gke-logging">
-	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
-	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
-	    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
-	        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
-				<layout class="com.dnastack.logback.StackdriverJsonLayout">
-					<jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
-						<prettyPrint>false</prettyPrint>
-					</jsonFormatter>
-	                <appendLineSeparator>true</appendLineSeparator>
-	            </layout>
-	        </encoder>
-	    </appender>
+	<springProfile name="gke-logging">
+		<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+		<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+			<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+				<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+					<layout class="com.dnastack.logback.StackdriverJsonLayout">
+						<jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+							<prettyPrint>false</prettyPrint>
+						</jsonFormatter>
+						<appendLineSeparator>true</appendLineSeparator>
+					</layout>
+				</encoder>
+			</appender>
 
-	    <root level="info">
-	        <appender-ref ref="stdout"/>
-	    </root>
-</springProfile>
+			<root level="info">
+				<appender-ref ref="stdout"/>
+			</root>
+	</springProfile>
 
-<springProfile name="!gke-logging">
-	<include resource="org/springframework/boot/logging/logback/base.xml"/>
-</springProfile>
+	<springProfile name="!gke-logging">
+		<include resource="org/springframework/boot/logging/logback/base.xml"/>
+	</springProfile>
 </configuration>
