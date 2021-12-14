@@ -1,5 +1,5 @@
 <configuration>
-	<springProfile name="gke-logging">
+	<springProfile name="gcp">
 		<include resource="org/springframework/boot/logging/logback/defaults.xml" />
 		<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 			<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
@@ -18,7 +18,7 @@
 			</root>
 	</springProfile>
 
-	<springProfile name="!gke-logging">
+	<springProfile name="!gcp">
 		<include resource="org/springframework/boot/logging/logback/base.xml"/>
 	</springProfile>
 </configuration>

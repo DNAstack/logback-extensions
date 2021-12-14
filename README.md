@@ -21,4 +21,4 @@ Extensions to logback for smoother integration with cloud environments. Currentl
 
 2. Configure logback: `/examples/logback-spring.xml` is a copy-pastable configurations.
 
-  * If you are using the above example configuration, enable the `gke-logging` Spring profile to enable JSON logging.
+  * If you are using the above example configuration, enable the `gcp` Spring profile to enable JSON logging.
