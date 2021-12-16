@@ -7,6 +7,25 @@
     <groupId>com.dnastack</groupId>
     <artifactId>logback-extensions</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Extensions to logback to enable richer functionality, especially in cloud services.</description>
+    <url>https://www.github.com/DNAstack/logback-extensions</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Fizz Ahmed</name>
+            <email>fizz@dnastack.com</email>
+            <organization>DNAstack</organization>
+            <organizationUrl>https://www.dnastack.com</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <java.version>11</java.version>
@@ -17,13 +36,6 @@
         <junit.version>5.7.0</junit.version>
         <logback.contrib.version>0.1.5</logback.contrib.version>
     </properties>
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub OWNER Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/DNAstack/dnastack-packages</url>
-        </repository>
-    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
@@ -104,5 +116,93 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!-- DNAstack Internal Release Profile -->
+        <profile>
+            <id>dnastack</id>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>GitHub DNAstack Apache Maven Packages</name>
+                    <url>https://maven.pkg.github.com/DNAstack/dnastack-packages</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <!-- Maven Central Release Profile -->
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                            <stagingProgressTimeoutMinutes>20</stagingProgressTimeoutMinutes>
+                            <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <scm>
+        <connection>scm:git:git://github.com/DNAstack/logback-extensions.git</connection>
+        <developerConnection>scm:git:ssh://github.com:DNAstack/logback-extensions.git</developerConnection>
+        <url>https://github.com/DNAstack/logback-extensions/tree/main</url>
+    </scm>
 
 </project>

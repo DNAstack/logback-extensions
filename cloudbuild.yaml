@@ -45,8 +45,8 @@ steps:
         # Need libatomic1 for protoc.
         apt update && apt install -y git libatomic1
         releaseVersion=$(git describe --abbrev=7)
-        ./mvnw -P -dnastack -B versions:set -DnewVersion=${releaseVersion}
-        ./mvnw -P -dnastack -B clean deploy
+        ./mvnw -P dnastack -B versions:set -DnewVersion=${releaseVersion}
+        ./mvnw -P dnastack -B clean deploy
     volumes:
       - name: 'homedir'
         path: /homedir_dotfiles
