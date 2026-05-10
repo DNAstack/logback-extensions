@@ -33,7 +33,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.surefile.plugin.version>2.22.2</maven.surefile.plugin.version>
-        <junit.version>5.7.0</junit.version>
+        <junit.version>5.14.4</junit.version>
         <logback.contrib.version>0.1.5</logback.contrib.version>
     </properties>
 
