@@ -1,6 +1,6 @@
 steps:
   - id: setup
-    name: 'gcr.io/cloud-builders/gcloud'
+    name: 'gcr.io/cloud-builders/gcloud@sha256:5aabf63e44688be8892118194110c953a27c82be17533f949ce306a615b8b08c'
     entrypoint: 'bash'
     args:
       - '-e'
